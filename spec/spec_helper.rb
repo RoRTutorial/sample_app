@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'factory_girl'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -19,9 +20,13 @@ Spork.prefork do
 end
 
 Spork.each_run do
+
+  FactoryGirl.find_definitions
+  
   # This code will be run each time you run your specs.
   load "#{Rails.root}/config/routes.rb" 
     Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
+    
 
 end
 
